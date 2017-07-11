@@ -2,8 +2,6 @@
 
 Testing in react native can be difficult besides just matching to snapshot. This library tries to make testing easier.
 
-`react-native-test-utils` uses css selectors to find rendered components in your react tree and then allows you to simulate user interactions on those views.
-
 ## Example
 
     import renderer from 'react-native-test-utils'
@@ -26,6 +24,7 @@ Testing in react native can be difficult besides just matching to snapshot. This
       expect(textViews.map(t => t.text())).toContain('react-native-test-utils')
     })
 
+`react-native-test-utils` uses css selectors to find rendered components in your react tree and then allows you to simulate user interactions as well as assert on rendered output of those views. It uses `react-test-renderer` under the hood so it does not need to shallow render.
 
 ## API
 
