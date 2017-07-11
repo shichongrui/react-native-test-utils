@@ -67,7 +67,7 @@ Returns an object representation of the entire tree. Useful for matching to a sn
 The remaining methods and properties are on every component api returned from calls to `query` and `queryAll`
 
 ### `simulate(string, any): void`
-If a component responds to any kind of event that takes a handler as a `on*` property such as `onChange` or `onPress`, you can use `simulate` to trigger that event. The first parameter is the event you would like to trigger and the second parameter is the value you passed into the event handler. After calling `simulate` if the rendered output changes, any component retrieved using `query` and `queryAll` may be out of date and it will be necessary to fetch them again.
+If a component responds to any kind of event that takes a handler as a `on*` property such as `onChange` or `onPress`, you can use `simulate` to trigger that event. The first parameter is the event you would like to trigger and the second parameter is the value you passed into the event handler. eg. `view.simulate('press', {})` After calling `simulate` if the rendered output changes, any component retrieved using `query` and `queryAll` may be out of date and it will be necessary to fetch them again.
 
 ### `text(): string`
 Will return all of the rendered text that component or any of it's subviews render as children.
