@@ -1,6 +1,6 @@
 {
   "name": "react-native-test-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Testing util library for easy react native component testing",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,11 @@
   "license": "MIT",
   "repository": {
     "git": "git@github.com:shichongrui/react-native-test-utils.git"
+  },
+  "peerDependencies": {
+    "react": "react@16.0.0-alpha.12",
+    "react-native": "^0.46.1",
+    "react-test-renderer": "react-test-renderer@16.0.0-alpha.12"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",
