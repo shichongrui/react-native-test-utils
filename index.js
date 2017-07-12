@@ -50,10 +50,12 @@ export default function (component) {
   let view = renderer.create(component)
   return {
     query (selector) {
+      selector = selector.replace('.', '\\.')
       let parsed = PARSER.parse(selector)
       return createApi(find(view.toTree(), parsed)[0])
     },
     queryAll (selector) {
+      selector = selector.replace('.', '\\.')
       let parsed = PARSER.parse(selector)
       return find(view.toTree(), parsed).map(createApi)
     },

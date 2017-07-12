@@ -18,9 +18,9 @@
     "git": "git@github.com:shichongrui/react-native-test-utils.git"
   },
   "peerDependencies": {
-    "react": "react@16.0.0-alpha.12",
-    "react-native": "^0.46.1",
-    "react-test-renderer": "react-test-renderer@16.0.0-alpha.12"
+    "react": "*",
+    "react-native": "*",
+    "react-test-renderer": "*"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",

@@ -96,6 +96,11 @@ describe('id', () => {
     let text = view.query('#test')
     expect(text).not.toBeNull()
   })
+
+  it('ignores periods as classnames', () => {
+    let view = renderer(<Text testID='a.b'>Yo</Text>)
+    expect(view.query('#a.b')).not.toBeNull()
+  })
 })
 
 describe('selectors', () => {
