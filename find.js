@@ -7,28 +7,29 @@ export default function find (component, selector) {
       if (ruleSet(component, selector)) {
         results.push(component)
       }
-
-      if (component.type.name === 'Component') {
-        component = component.rendered
-      }
-
-      if (component.rendered) {
-        let rendered = Array.isArray(component.rendered) ? component.rendered : [component.rendered]
-        rendered.forEach(child => {
-          if (typeof child === 'object') {
-            results = [...results, ...find(child, selector)]
-          }
-        })
-      }
       break
     case 'selectors':
       let selectorsResult = new Set(selector.selectors.map(s => find(component, s)))
       results.push(...selectorsResult)
-      break
+      return results
     case 'custom':
       if (selector.match(component)) {
         results.push(component)
       }
+      break
+  }
+
+  if (component.type.name === 'Component') {
+    component = component.rendered
+  }
+
+  if (component.rendered) {
+    let rendered = Array.isArray(component.rendered) ? component.rendered : [component.rendered]
+    rendered.forEach(child => {
+      if (typeof child === 'object') {
+        results = [...results, ...find(child, selector)]
+      }
+    })
   }
 
   return results

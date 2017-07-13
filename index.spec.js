@@ -136,3 +136,20 @@ describe('simulate', () => {
     expect(onChangeText).toHaveBeenCalledWith('asdf')
   })
 })
+
+describe('text', () => {
+  it('finds all the text rendered by a component and its subviews', () => {
+    let view = renderer(
+      <View>
+        <Text>H</Text>
+        <Text>e</Text>
+        <Text>l</Text>
+        <Text>l</Text>
+        <View>
+          <Text>o</Text>
+        </View>
+      </View>
+    )
+    expect(view.text()).toEqual('Hello')
+  })
+})
