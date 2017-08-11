@@ -20,11 +20,11 @@ function createApi (tree) {
     simulate (eventName, event) {
       let eventHandlerName = `on${eventName[0].toUpperCase()}${eventName.substring(1)}`
 
-      if (!tree.instance.props[eventHandlerName]) {
+      if (!tree.props[eventHandlerName]) {
         throw new Error(`Event ${eventName} not handled`)
       }
 
-      tree.instance.props[eventHandlerName](event)
+      tree.props[eventHandlerName](event)
     },
 
     text () {
