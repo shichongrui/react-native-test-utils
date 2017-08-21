@@ -19,13 +19,9 @@ export default function find (component, selector) {
       break
   }
 
-  if (component.type.name === 'Component') {
-    component = component.rendered
-  }
-
-  if (component.rendered) {
-    let rendered = Array.isArray(component.rendered) ? component.rendered : [component.rendered]
-    rendered.forEach(child => {
+  if (component.children) {
+    let children = Array.isArray(component.children) ? component.children : [component.children]
+    children.forEach(child => {
       if (typeof child === 'object') {
         results = [...results, ...find(child, selector)]
       }

@@ -15,7 +15,6 @@ function createApi (tree) {
   if (!tree) return null
   return {
     props: tree.props,
-    instance: tree.instance,
 
     simulate (eventName, event) {
       let eventHandlerName = `on${eventName[0].toUpperCase()}${eventName.substring(1)}`
@@ -31,17 +30,16 @@ function createApi (tree) {
       return find(tree, {
         type: 'custom',
         match: (tree) => {
-          let children = Array.isArray(tree.props.children) ? tree.props.children : [tree.props.children]
+          let children = Array.isArray(tree.children) ? tree.children : [tree.children]
           return children.some(child => typeof child === 'string')
         }
-      }).map(({ props }) => {
-        let children = Array.isArray(props.children) ? props.children : [props.children]
-        return children
+      }).map(({ children }) => {
+        let arrayChildren = Array.isArray(children) ? children : [children]
+        return arrayChildren
           .filter(child => typeof child === 'string')
           .join('')
       })
       .join('')
-
     }
   }
 }
@@ -52,15 +50,15 @@ export default function (component) {
     query (selector) {
       selector = selector.replace('.', '\\.')
       let parsed = PARSER.parse(selector)
-      return createApi(find(view.toTree(), parsed)[0])
+      return createApi(find(view.toJSON(), parsed)[0])
     },
     queryAll (selector) {
       selector = selector.replace('.', '\\.')
       let parsed = PARSER.parse(selector)
-      return find(view.toTree(), parsed).map(createApi)
+      return find(view.toJSON(), parsed).map(createApi)
     },
     update: view.update,
     toJSON: view.toJSON,
-    ...createApi(view.toTree())
+    ...createApi(view.toJSON())
   }
 }
