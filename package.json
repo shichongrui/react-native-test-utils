@@ -15,7 +15,8 @@
   "author": "Matthew Sessions <shichongrui@gmail.com> (http://www.matthewsessions.com/)",
   "license": "MIT",
   "repository": {
-    "git": "git@github.com:shichongrui/react-native-test-utils.git"
+    "type" : "git",
+    "url" : "https://github.com/shichongrui/react-native-test-utils.git"
   },
   "peerDependencies": {
     "react": "*",
