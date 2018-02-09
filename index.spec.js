@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import renderer from './index'
 import { Text, View, TextInput } from 'react-native'
 
@@ -151,5 +151,27 @@ describe('text', () => {
       </View>
     )
     expect(view.text()).toEqual('Hello')
+  })
+})
+
+describe('instance', () => {
+  it('will return the underlying react instance', () => {
+    let view = renderer(
+      <View></View>
+    )
+    expect(view.instance()).not.toBeNull()
+  })
+})
+
+describe('state', () => {
+  it('returns the components state', () => {
+    class Test extends Component {
+      state = { test: 'test' }
+      render () {
+        return (<View></View>)
+      }
+    }
+    let view = renderer(<Test />)
+    expect(view.state()).toEqual({ test: 'test' })
   })
 })
