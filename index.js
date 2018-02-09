@@ -47,6 +47,9 @@ function createApi (tree) {
 export default function (component) {
   let view = renderer.create(component)
   return {
+    component: view,
+    instance () { return view.getInstance() },
+    state () { return view.getInstance().state },
     query (selector) {
       selector = selector.replace('.', '\\.')
       let parsed = PARSER.parse(selector)

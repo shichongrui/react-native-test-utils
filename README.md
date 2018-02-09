@@ -40,7 +40,9 @@ This is the default export of react-native-test-utils. You pass in JSX as the pa
       simulate,
       text,
       props,
-      instance
+      instance,
+      component,
+      state
     }
 
 The `query`, `queryAll`, `toJSON`, and `update` methods are only available on the root view component that gets returned from `renderer`. They are not available on sub views in the react tree.
@@ -75,5 +77,11 @@ Will return all of the rendered text that component or any of it's subviews rend
 ### `props: any`
 The props passed to that component.
 
-### `instance: any`
+### `instance(): any`
 The underlying instance of the component that got rendered.
+
+### `component`
+The component rendered from react-test-renderer
+
+### `state(): any`
+Retreives the state of the current instance of the component.
