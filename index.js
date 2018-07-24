@@ -15,8 +15,11 @@ function createApi (tree) {
   if (!tree) return null
   return {
     props: tree.props,
-
     simulate (eventName, event) {
+      if (tree.props.disabled) {
+        return
+      }
+
       let eventHandlerName = `on${eventName[0].toUpperCase()}${eventName.substring(1)}`
 
       if (!tree.props[eventHandlerName]) {
