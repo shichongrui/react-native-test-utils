@@ -2,8 +2,32 @@ import renderer from 'react-test-renderer'
 import find from './find'
 import { CssSelectorParser } from 'css-selector-parser'
 
+import mockComponent from 'react-native/jest/mockComponent';
+
 const PARSER = new CssSelectorParser()
 PARSER.registerAttrEqualityMods('^', '$', '*', '|')
+
+jest.mock('Button', () => {
+    return mockComponent('Button');
+});
+
+jest.mock('TouchableOpacity', () => {
+    return mockComponent('TouchableOpacity');
+});
+
+jest.mock('TouchableHighlight', () => {
+    return mockComponent('TouchableHighlight');
+});
+
+jest.mock('TouchableNativeFeedback', () => {
+    return mockComponent('TouchableNativeFeedback');
+});
+
+jest.mock('TouchableWithoutFeedback', () => {
+    return mockComponent('TouchableWithoutFeedback');
+});
+
+
 
 function eventSimulator(props, eventName, event) {
   return function () {
