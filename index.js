@@ -67,6 +67,16 @@ function createApi (tree) {
           .join('')
       })
       .join('')
+    },
+    query (selector) {
+      selector = selector.replace('.', '\\.')
+      let parsed = PARSER.parse(selector)
+      return createApi(tree, parsed)[0]
+    },
+    queryAll (selector) {
+      selector = selector.replace('.', '\\.')
+      let parsed = PARSER.parse(selector)
+      return find(tree, parsed).map(createApi)
     }
   }
 }

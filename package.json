@@ -1,6 +1,6 @@
 {
   "name": "react-native-test-utils",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Testing util library for easy react native component testing",
   "main": "index.js",
   "scripts": {

@@ -95,11 +95,13 @@ describe('id', () => {
     let view = renderer(<Text testID='test'>Yo</Text>)
     let text = view.query('#test')
     expect(text).not.toBeNull()
+    expect(text.text()).toEqual('Yo')
   })
 
   it('ignores periods as classnames', () => {
     let view = renderer(<Text testID='a.b'>Yo</Text>)
     expect(view.query('#a.b')).not.toBeNull()
+    console.log(view.query('#a.b'))
   })
 })
 
@@ -114,6 +116,27 @@ describe('selectors', () => {
 
     let views = view.queryAll('#test, TextInput')
     expect(views.length).toEqual(2)
+  })
+
+  it('provides a query API to queried results', () => {
+    const view = renderer(
+      <View>
+        <View testID='block1'>
+          <Text>1</Text>
+          <Text>2</Text>
+          <Text>3</Text>
+        </View>
+        <View testID='block2'>
+          <Text>4</Text>
+          <Text>5</Text>
+          <Text>6</Text>
+        </View>
+      </View>
+    )
+    const block1 = view.query('#block1');
+    const textBlocks = block1.queryAll('Text');
+    expect(textBlocks.length).toEqual(3)
+    expect(textBlocks.map((item) => item.text())).toEqual(expect.arrayMatching(['1', '2', '3']))
   })
 })
 
