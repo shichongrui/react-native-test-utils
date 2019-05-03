@@ -31,62 +31,62 @@ describe('attributes', () => {
     let view = renderer(<Comp />)
 
     let input = view.query('[value]')
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 
   it('matches =', () => {
     let view = renderer(<Comp />)
 
     let input = view.query("[value='asdf']")
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 
   it('matches |= where value is exact', () => {
     let view = renderer(<Comp />)
 
     let input = view.query("[value|='asdf']")
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 
   it('matches |= where value is followed by -', () => {
     let view = renderer(<Text testID='asdf-fdsa'>Yo</Text>)
 
     let text = view.query("[testID|='asdf']")
-    expect(text).not.toBeNull()
+    expect(text).toBeDefined()
   })
 
   it('matches ^=', () => {
     let view = renderer(<Comp />)
 
     let input = view.query("[value^='as']")
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 
   it('matches $=', () => {
     let view = renderer(<Comp />)
 
     let input = view.query("[value$='df']")
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 
   it('matches *=', () => {
     let view = renderer(<Comp />)
 
     let input = view.query("[value*='sd']")
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 
   it('can match multiple attributes', () => {
     let view = renderer(<Text a='asdf' b='fdsa'>Yo</Text>)
 
     let text = view.query("[a$='df'][b*='ds']")
-    expect(text).not.toBeNull()
+    expect(text).toBeDefined()
   })
 
   it('can match with a tagname', () => {
     let view = renderer(<Comp />)
     let input = view.query("TextInput[value='asdf']")
-    expect(input).not.toBeNull()
+    expect(input).toBeDefined()
   })
 })
 
@@ -94,14 +94,13 @@ describe('id', () => {
   it('will match a testID', () => {
     let view = renderer(<Text testID='test'>Yo</Text>)
     let text = view.query('#test')
-    expect(text).not.toBeNull()
+    expect(text).toBeDefined()
     expect(text.text()).toEqual('Yo')
   })
 
   it('ignores periods as classnames', () => {
     let view = renderer(<Text testID='a.b'>Yo</Text>)
     expect(view.query('#a.b')).not.toBeNull()
-    console.log(view.query('#a.b'))
   })
 })
 
@@ -133,10 +132,14 @@ describe('selectors', () => {
         </View>
       </View>
     )
-    const block1 = view.query('#block1');
-    const textBlocks = block1.queryAll('Text');
+    const block1 = view.query('#block1')
+    const textBlocks = block1.queryAll('Text')
     expect(textBlocks.length).toEqual(3)
-    expect(textBlocks.map((item) => item.text())).toEqual(expect.arrayMatching(['1', '2', '3']))
+    expect(textBlocks.map((item) => item.text())).toEqual(['1', '2', '3'])
+
+    let block2 = view.query('#block2')
+    let textComponent = block2.query('Text')
+    expect(textComponent.text()).toEqual('4')
   })
 })
 

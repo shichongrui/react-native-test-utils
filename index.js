@@ -71,7 +71,7 @@ function createApi (tree) {
     query (selector) {
       selector = selector.replace('.', '\\.')
       let parsed = PARSER.parse(selector)
-      return createApi(tree, parsed)[0]
+      return createApi(find(tree, parsed)[0])
     },
     queryAll (selector) {
       selector = selector.replace('.', '\\.')
